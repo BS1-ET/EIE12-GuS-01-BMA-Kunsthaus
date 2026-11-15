@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expertenkarten – Gruppenpuzzle „Das System
+BMA“ – BMA · BS1 Bayreuth</title>
+<link rel="stylesheet" href="../assets/material.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Lernlandkarte</a><span>Brandmeldeanlagen · GuS LF 9</span><button onclick="window.print()">Drucken / PDF</button></div>
+<main class="blatt">
+<div class="kopf"><strong>BS1 BAYREUTH · INFORMATIONSELEKTRONIK</strong><span></span></div>
+<h1>Expertenkarten – Gruppenpuzzle „Das System BMA“</h1>
+<p><em>Ablauf: siehe AB 2. Lies deine Karte, kläre den Expertenauftrag
+in der Gruppe, füll den Spickzettel aus und erkläre die Komponente
+danach in der Stammgruppe in höchstens 2 Minuten.</em></p>
+<h2
+id="expertenkarte-a-brandmelderzentrale-bmz-und-energieversorgung">Expertenkarte
+A – Brandmelderzentrale (BMZ) und Energieversorgung</h2>
+<p>Die <strong>Brandmelderzentrale (BMZ)</strong> ist das „Gehirn“ der
+Anlage. An sie sind alle Melder angeschlossen, meist über einen
+<strong>Ringbus</strong>. Sie erfüllt fünf Aufgaben:</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 78%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aufgabe</th>
+<th>Was heißt das?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aufnehmen</td>
+<td>Sie fragt alle Melder ständig ab und empfängt deren Meldungen.</td>
+</tr>
+<tr class="even">
+<td>auswerten</td>
+<td>Sie entscheidet: Ist das ein Brandalarm, eine Störung oder nur ein
+Prüfsignal?</td>
+</tr>
+<tr class="odd">
+<td>anzeigen</td>
+<td>Sie zeigt den Zustand mit LEDs und Klartext an, z. B. „Feuer MG 1
+Melder 3 Atelier“.</td>
+</tr>
+<tr class="even">
+<td>speichern</td>
+<td>Jedes Ereignis kommt mit Datum und Uhrzeit in den
+<strong>Ereignisspeicher</strong>.</td>
+</tr>
+<tr class="odd">
+<td>steuern</td>
+<td>Sie löst die Alarmierung, die Übertragungseinrichtung (ÜE) und die
+Brandfallsteuerungen aus.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Zustände und Überwachung:</strong> Ruhe ·
+<strong>Brandalarm</strong> · <strong>Störung</strong> (z. B.
+Drahtbruch, Akku defekt – das ist <strong>kein</strong> Feueralarm) ·
+<strong>Abschaltung</strong> (z. B. eine Meldergruppe wegen Bauarbeiten)
+· Prüfbetrieb bei der Wartung. Die BMZ überwacht alle Leitungen und ihre
+Energieversorgung ständig.</p>
+<p><strong>Energieversorgung – zwei unabhängige Quellen (DIN EN
+54-4):</strong></p>
+<ol type="1">
+<li><strong>Netz:</strong> eigener Stromkreis mit eigener,
+<strong>gekennzeichneter Sicherung</strong> („Brandmeldeanlage – nicht
+abschalten“).</li>
+<li><strong>Akku</strong> (meist 2 × 12 V in Reihe = 24 V): Er übernimmt
+bei Netzausfall <strong>ohne Unterbrechung</strong>. Er muss die Anlage
+<strong>30 h</strong> (mit Wartungsvertrag, Behebung in 24 h) oder
+<strong>72 h</strong> überbrücken und danach noch <strong>30 min
+Alarm</strong> liefern.</li>
+</ol>
+<p>Fällt eine Quelle aus, meldet die BMZ eine Störung. Die Funktion darf
+darunter <strong>nicht</strong> leiden.</p>
+<p><strong>Standort und Bedienung:</strong> gut zugänglicher, nicht
+brandgefährdeter Raum, möglichst nahe am Feuerwehrzugang – sonst kommen
+FBF und FAT dorthin. Im Alltag bedient die <strong>eingewiesene
+Person</strong> des Betreibers, im Einsatz die
+<strong>Feuerwehr</strong> über das FBF. Norm der Zentrale: DIN EN
+54-2.</p>
+<div class="auftrag">
+<p><strong>Expertenauftrag A:</strong> 1. Nenne die fünf Aufgaben der
+BMZ und erkläre jede mit einem Beispiel aus dem Kunsthaus. 2. Erkläre
+den Unterschied zwischen <strong>Brandalarm</strong> und
+<strong>Störung</strong>. 3. Warum braucht die BMZ zwei Energiequellen?
+Was passiert bei Stromausfall nachts? 4. Wo würdet ihr die BMZ im
+Kunsthaus montieren? Begründet mit dem Grundriss.</p>
+</div>
+<p><strong>Spickzettel A</strong> (nur Stichworte):</p>
+<div class="linien">
+
+</div>
+<div class="linien">
+
+</div>
+<div class="linien">
+
+</div>
+<div class="linien">
+
+</div>
+<h2
+id="expertenkarte-b-übertragungseinrichtung-üe-und-aufschaltung-zur-leitstelle">Expertenkarte
+B – Übertragungseinrichtung (ÜE) und Aufschaltung zur Leitstelle</h2>
+<p>Eine BMA soll nicht nur im Gebäude warnen, sondern
+<strong>automatisch die Feuerwehr rufen</strong>. Das macht die
+<strong>Übertragungseinrichtung (ÜE)</strong>.</p>
+<p><strong>So läuft es ab:</strong></p>
+<ol type="1">
+<li>Die BMZ erkennt einen Brandalarm und steuert die ÜE an.</li>
+<li>Die ÜE sendet den Alarm über eine <strong>überwachte
+Übertragungsstrecke</strong> an die Alarmempfangsstelle. Heute läuft das
+meist über IP-Netze, oft mit zwei Übertragungswegen.</li>
+<li>In Bayern kommt der Alarm bei der <strong>Integrierten Leitstelle
+(ILS)</strong> an, im Raum Bayreuth bei der ILS Bayreuth/Kulmbach.</li>
+<li>Die ILS sieht sofort <strong>welches Objekt</strong> alarmiert
+(Objektnummer, Adresse) und schickt die Feuerwehr los. Niemand muss
+telefonieren.</li>
+</ol>
+<p><strong>Warum „überwacht“?</strong> Die Verbindung zwischen ÜE und
+Leitstelle wird ständig geprüft. Fällt sie aus, merkt das die
+Empfangsstelle und meldet eine Störung. Sonst würde ein Brand vielleicht
+nie gemeldet.</p>
+<p><strong>Aufschaltung – nicht jeder darf einfach
+anschließen:</strong></p>
+<ul>
+<li>Die Bedingungen legt die Feuerwehr in den <strong>Technischen
+Anschlussbedingungen (TAB)</strong> fest. Darin steht z. B., welche
+Feuerwehrperipherie nötig ist, wie die Laufkarten aussehen und wie die
+Abnahme abläuft.</li>
+<li>Vor der Aufschaltung gibt es eine <strong>Abnahme</strong>
+(Sachverständiger und Feuerwehr).</li>
+<li>Der Betreiber schließt einen Vertrag mit dem Anbieter der
+Übertragung.</li>
+</ul>
+<p><strong>ÜE abschalten und prüfen:</strong> Bei Wartungsarbeiten wird
+die ÜE über das FBF abgeschaltet („ÜE ab“), damit kein Fehlalarm zur
+Feuerwehr geht. Vorher meldet man die Arbeiten bei der ILS
+<strong>an</strong>, danach wieder <strong>ab</strong>. Ein Probealarm
+wird ebenfalls mit der ILS abgesprochen.</p>
+<p><strong>Kosten:</strong> Rückt die Feuerwehr wegen eines Fehlalarms
+aus, kann die Gemeinde dem Betreiber die Kosten in Rechnung stellen
+(Satzung der Gemeinde).</p>
+<div class="auftrag">
+<p><strong>Expertenauftrag B:</strong> 1. Beschreibe in vier Schritten,
+wie ein Alarm aus dem Kunsthaus bei der Feuerwehr ankommt. 2. Was
+bedeutet „überwachte Übertragungsstrecke“ und warum ist das wichtig? 3.
+Was regeln die TAB? Nenne zwei Beispiele. 4. Der Monteur will einen
+Melder tauschen. Was muss er vorher und nachher mit der ÜE und der ILS
+tun?</p>
+</div>
+<p><strong>Spickzettel B</strong> (nur Stichworte):</p>
+<div class="linien">
+
+</div>
+<div class="linien">
+
+</div>
+<div class="linien">
+
+</div>
+<div class="linien">
+
+</div>
+<h2
+id="expertenkarte-c-feuerwehr-bedienfeld-fbf-und-feuerwehr-anzeigetableau-fat">Expertenkarte
+C – Feuerwehr-Bedienfeld (FBF) und Feuerwehr-Anzeigetableau (FAT)</h2>
+<p>Kommt die Feuerwehr an, braucht sie <strong>schnell zwei
+Informationen</strong>: <em>Wo brennt es?</em> und <em>Wie bediene ich
+die Anlage?</em> Dafür gibt es zwei genormte Geräte an der
+<strong>Feuerwehr-Anlaufstelle</strong>, meist direkt neben dem
+Feuerwehrzugang.</p>
+<p><strong>Feuerwehr-Anzeigetableau (FAT, DIN 14662)</strong></p>
+<ul>
+<li>zeigt den <strong>ersten Alarm</strong>: Meldergruppe, Melder und
+Ort im Klartext, z. B. „MG 1/3 – EG Atelier, Nordwand“</li>
+<li>weitere Alarme kann die Feuerwehr nacheinander abrufen
+(„blättern“)</li>
+<li>Es ist bei allen Anlagen gleich aufgebaut. Deshalb findet sich jede
+Feuerwehr sofort zurecht, egal welcher Hersteller die BMZ gebaut
+hat.</li>
+</ul>
+<p><strong>Feuerwehr-Bedienfeld (FBF, DIN 14661)</strong></p>
+<p>Damit bedient die Feuerwehr die BMA, ohne die Zentrale kennen zu
+müssen. Typische Tasten und Anzeigen:</p>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Taste / Anzeige</th>
+<th>Wirkung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Akustische Signale ab</td>
+<td>Sirenen im Gebäude aus, damit die Einsatzkräfte sich verständigen
+können</td>
+</tr>
+<tr class="even">
+<td>Übertragungseinrichtung ab</td>
+<td>ÜE abgeschaltet, keine weitere Meldung an die ILS</td>
+</tr>
+<tr class="odd">
+<td>Brandfallsteuerungen ab</td>
+<td>Steuerungen (z. B. Lüftung, Türen) werden nicht mehr ausgelöst</td>
+</tr>
+<tr class="even">
+<td>BMZ rückstellen</td>
+<td>Anlage zurücksetzen, wenn der Einsatz beendet ist</td>
+</tr>
+<tr class="odd">
+<td>ÜE prüfen</td>
+<td>Probealarm zur Leitstelle (nur nach Absprache)</td>
+</tr>
+<tr class="even">
+<td>Anzeige „ÜE ausgelöst“</td>
+<td>Die Feuerwehr wurde automatisch alarmiert</td>
+</tr>
+</tbody>
+</table>
+<p>Das FBF ist hinter einer Tür, die oft nur mit der
+<strong>Feuerwehrschließung</strong> geöffnet werden kann. Die
+Einzelheiten stehen in den TAB.</p>
+<p><strong>Laufkarten:</strong> Neben FAT und FBF hängen die
+<strong>Feuerwehr-Laufkarten</strong>. Für jede Meldergruppe gibt es
+eine Karte mit Grundriss und dem Weg vom Feuerwehrzugang zum Melder. So
+findet ein Trupp auch in einem fremden, verrauchten Gebäude schnell zum
+Brandort.</p>
+<div class="auftrag">
+<p><strong>Expertenauftrag C:</strong> 1. Welche zwei Fragen beantworten
+FAT und FBF der Feuerwehr? 2. Erkläre drei Tasten des FBF und wann die
+Feuerwehr sie drückt. 3. Warum sind FAT und FBF
+<strong>genormt</strong>, obwohl die Zentralen von verschiedenen
+Herstellern kommen? 4. Wozu dienen Laufkarten? Was steht darauf?</p>
+</div>
+<p><strong>Spickzettel C</strong> (nur Stichworte):</p>
+<div class="linien">
+
+</div>
+<div class="linien">
+
+</div>
+<div class="linien">
+
+</div>
+<div class="linien">
+
+</div>
+<h2
+id="expertenkarte-d-feuerwehr-schlüsseldepot-fsd-und-freischaltelement-fse">Expertenkarte
+D – Feuerwehr-Schlüsseldepot (FSD) und Freischaltelement (FSE)</h2>
+<p>Nachts um 2 Uhr ist das Kunsthaus abgeschlossen. Die Feuerwehr soll
+trotzdem <strong>ohne Gewalt</strong> hineinkommen. Eine eingeschlagene
+Tür kostet Zeit und Geld.</p>
+<p><strong>Feuerwehr-Schlüsseldepot (FSD)</strong></p>
+<ul>
+<li>ein kleiner <strong>Tresor</strong>, fest in die Außenwand neben dem
+Feuerwehrzugang eingemauert</li>
+<li>innen liegt der <strong>Objektschlüssel</strong> (General- bzw.
+Hauptschlüssel des Gebäudes)</li>
+<li><strong>zwei Türen:</strong>
+<ul>
+<li>Die <strong>Außentür</strong> ist im Normalfall elektrisch
+verriegelt. Löst die BMA aus, <strong>entriegelt</strong> die BMZ diese
+Tür.</li>
+<li>Die <strong>Innentür</strong> lässt sich nur mit der
+<strong>Feuerwehrschließung</strong> der zuständigen Feuerwehr öffnen.
+So kommt niemand anderes an den Schlüssel.</li>
+</ul></li>
+<li>Das FSD wird gegen Aufbrechen und Manipulation
+<strong>überwacht</strong>. Wird der Objektschlüssel entnommen, wird das
+erkannt.</li>
+<li>Nach dem Einsatz legt die Feuerwehr den Schlüssel zurück und
+verschließt das FSD wieder.</li>
+</ul>
+<p><strong>Freischaltelement (FSE)</strong></p>
+<ul>
+<li>ein Schalter außen, in der Nähe des FSD, den nur die Feuerwehr mit
+ihrem Schlüssel betätigen kann</li>
+<li>Damit kann die Feuerwehr die <strong>BMA von außen
+auslösen</strong>. Dadurch wird das <strong>FSD
+freigegeben</strong>.</li>
+<li><strong>Wozu?</strong> Die Feuerwehr kommt manchmal
+<strong>ohne</strong> automatischen Alarm. Beispiel: Ein Passant ruft
+die 112, weil Rauch aus dem Fenster kommt, aber kein Melder hat
+ausgelöst (Brand in einem Raum ohne Melder). Mit dem FSE kommt sie
+trotzdem an den Schlüssel.</li>
+<li>Das FSE löst einen <strong>echten Alarm</strong> aus, inklusive
+Alarmierung im Gebäude.</li>
+</ul>
+<div class="auftrag">
+<p><strong>Expertenauftrag D:</strong> 1. Warum braucht ein Gebäude mit
+BMA ein FSD? Was liegt darin? 2. Erkläre die zwei Türen des FSD. Wer
+kann welche Tür öffnen und wann? 3. Beschreibe eine Situation, in der
+die Feuerwehr das <strong>FSE</strong> braucht. 4. Was könnte passieren,
+wenn ein Unbefugter an den Objektschlüssel käme? Wie wird das
+verhindert?</p>
+</div>
+<p><strong>Spickzettel D</strong> (nur Stichworte):</p>
+<div class="linien">
+
+</div>
+<div class="linien">
+
+</div>
+<div class="linien">
+
+</div>
+<div class="linien">
+
+</div>
+<h2
+id="expertenkarte-e-signalgeber-und-brandfallsteuerungen">Expertenkarte
+E – Signalgeber und Brandfallsteuerungen</h2>
+<p><strong>Interne Alarmierung – Menschen warnen</strong></p>
+<p>Die Personen im Gebäude müssen den Alarm <strong>sofort und
+sicher</strong> bemerken und das Gebäude verlassen.</p>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 54%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Signalgeber</th>
+<th>Wann?</th>
+<th>Norm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>akustisch</strong> (Hupe, Sirene)</td>
+<td>Standard in allen Bereichen</td>
+<td>DIN EN 54-3</td>
+</tr>
+<tr class="even">
+<td><strong>optisch</strong> (Blitzleuchte innen)</td>
+<td>in lauten Bereichen (Werkstatt) und für Menschen mit
+Hörbehinderung</td>
+<td>DIN EN 54-23</td>
+</tr>
+<tr class="odd">
+<td><strong>Sprachalarmanlage (SAA)</strong></td>
+<td>große Gebäude mit vielen Besuchern: gesprochene Durchsage</td>
+<td>DIN VDE 0833-4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wie laut?</strong> Mindestens <strong>65 dB(A)</strong> und
+mindestens <strong>10 dB über dem Umgebungsgeräusch</strong>. In
+Schlafräumen <strong>75 dB(A)</strong> am Kopfende. In der
+Rahmenwerkstatt (Säge ≈ 88 dB(A)) reicht das kaum, deshalb kommen dort
+<strong>zusätzlich optische</strong> Signalgeber hin.</p>
+<p><strong>Außen:</strong> Die <strong>Blitzleuchte</strong> über dem
+Feuerwehrzugang zeigt der anfahrenden Feuerwehr, wo die Anlaufstelle
+ist.</p>
+<p><strong>Brandfallsteuerungen – das Gebäude reagiert
+automatisch</strong></p>
+<p>Die BMZ steuert im Alarmfall weitere Anlagen an:</p>
+<ul>
+<li><strong>Brandschutztüren schließen:</strong> Haftmagnete lassen die
+offen gehaltenen Türen los, der Rauch bleibt im Brandabschnitt.</li>
+<li><strong>Lüftung und Klima aus</strong>, damit der Rauch nicht im
+ganzen Haus verteilt wird.</li>
+<li><strong>RWA öffnen</strong> (Rauch- und Wärmeabzug), damit Rauch und
+Wärme nach oben abziehen.</li>
+<li><strong>Aufzüge</strong> fahren in die Evakuierungsebene und bleiben
+dort mit offener Tür stehen.</li>
+<li>ggf. Löschanlage auslösen, Gaszufuhr sperren.</li>
+</ul>
+<p>Die Leitungen zu den Steuerungen sind <strong>überwacht</strong>. Bei
+Bedarf schaltet die Feuerwehr sie über das FBF ab („Brandfallsteuerungen
+ab“).</p>
+<div class="auftrag">
+<p><strong>Expertenauftrag E:</strong> 1. Welche Signalgeber gibt es? Wo
+setzt man welchen ein? 2. Wie laut muss der Alarm sein? Begründe, warum
+in der Rahmenwerkstatt ein optischer Signalgeber nötig ist. 3. Nenne
+vier Brandfallsteuerungen und erkläre jeweils, wozu sie dienen. 4.
+Welche Brandfallsteuerungen braucht das Kunsthaus? Begründet mit der
+Leitsituation.</p>
+</div>
+<p><strong>Spickzettel E</strong> (nur Stichworte):</p>
+<div class="linien">
+
+</div>
+<div class="linien">
+
+</div>
+<div class="linien">
+
+</div>
+<div class="linien">
+
+</div>
+<footer class="fuss"><span>LF 9 · Brandmeldeanlagen · Expertenkarten · zu LS 2</span><span>032_BMA_Expertenkarten_26</span></footer>
+</main>
+</body>
+</html>

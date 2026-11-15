@@ -89,7 +89,7 @@ footer{text-align:center;color:var(--grau);font-size:12.5px;padding:0 0 24px}
 <div class="wrap">
   <div class="mapcard">
     <h2>Deine Route</h2>
-    <p class="hint" id="lehrerhinweis" style="display:none;color:#c62828;font-weight:700">Lehrermodus aktiv – alle Stationen offen. <a href="?lehrer=0">Lehrermodus beenden</a></p>
+    <p class="hint" id="lehrerhinweis" style="display:none;color:#c62828;font-weight:700">Lehrermodus aktiv – alle Stationen offen. <a href="#" onclick="try{localStorage.removeItem('bma-lehrer')}catch(e){};location.reload();return false">Lehrermodus beenden</a></p>
     <p class="hint">Lies zuerst die Leitsituation (START), dann ist Station 1 frei. Jede weitere Station wird frei, sobald du den Test der vorherigen Station bestanden hast (mind. 80 %). Rot gefüllt = Pflichtziele dort als „sicher“ eingeschätzt.</p>
     <svg class="map" id="map" viewBox="0 0 900 640" role="img" aria-label="Lernlandkarte mit sieben Stationen"></svg>
     <div class="legend">
@@ -112,7 +112,8 @@ footer{text-align:center;color:var(--grau);font-size:12.5px;padding:0 0 24px}
       <div><b>Selbstgesteuert</b>Direkt ans Arbeitsblatt, Infoblatt nur bei Bedarf.</div>
     </div>
     <p>Bei jeder Station sind <b>Pflicht</b>-Ziele (für alle) und <b>Erweiterung</b>en (für Profis) ausgewiesen. Erst Hilfekarte → dann Partner → dann Lehrkraft.</p>
-    <p><a href="material/090_BMA_Hilfekarten_26.html">Hilfekarten öffnen</a> · <a href="material/091_BMA_Punktmatrix_26.html">Punktmatrix (Druck)</a></p>
+    <p><b>Üben mit Lernkarten:</b> <a href="material/093_BMA_Lernkartentrainer_26.html">Lernkarten-Trainer (online)</a> · <a href="material/092_BMA_Lernkarten_26.html">Lernkarten zum Ausdrucken</a> – 46 Karten zu allen Stationen.</p>
+    <p><a href="material/090_BMA_Hilfekarten_26.html">Hilfekarten öffnen</a> (zuerst Stufe 1, dann Stufe 2) · <a href="material/091_BMA_Punktmatrix_26.html">Punktmatrix (Druck)</a></p>
   </div>
   <div class="box">
     <h2>📖 Abkürzungen</h2>
@@ -144,12 +145,12 @@ const LS=[
  {nr:2,t:"Das System",s:"Komponenten & Ablauf",u:"2 UStd. · Tag 1",x:300,y:420,cp:"CP 1",
   q:"„FSD, FAT, FBF, ÜE – wofür brauche ich das alles?“",
   p:"Systemskizze mit Ablaufkette für die Kundin",
-  m:[["pr","Präsentation","praesentationen/035_BMA_Praesentation2_26.html"],["ib","IB 2 Aufbau","material/030_BMA_Infoblatt2_26.html"],["ab","AB 2","material/031_BMA_Arbeitsblatt2_26.html"],["ts","Test 2 · CP 1","tests/036_BMA_Test2_26.html"]],
+  m:[["pr","Präsentation","praesentationen/035_BMA_Praesentation2_26.html"],["ib","IB 2 Aufbau","material/030_BMA_Infoblatt2_26.html"],["","Expertenkarten A–E","material/032_BMA_Expertenkarten_26.html"],["ab","AB 2","material/031_BMA_Arbeitsblatt2_26.html"],["ts","Test 2 · CP 1","tests/036_BMA_Test2_26.html"]],
   z:[["IA1","Komponenten mit Schaltzeichen benennen",0],["IA2","Ablauf im Alarmfall erklären",0],["IIB2","als Experte/Expertin verständlich erklären",0],["IIC3","Rückstellung nur durch die Feuerwehr begründen",1]]},
  {nr:3,t:"Melderauswahl",s:"Brand- & Täuschungsgrößen",u:"2 UStd. · Tag 1",x:170,y:270,
   q:"„In der Werkstatt wird gesägt – geht da nicht ständig der Alarm los?“",
   p:"Begründete Melderauswahltabelle für alle Räume",
-  m:[["pr","Präsentation","praesentationen/045_BMA_Praesentation3_26.html"],["ib","IB 3 Melder","material/040_BMA_Infoblatt3_26.html"],["ab","AB 3","material/041_BMA_Arbeitsblatt3_26.html"],["","Hilfekarte H4","material/090_BMA_Hilfekarten_26.html"],["ts","Test 3","tests/046_BMA_Test3_26.html"]],
+  m:[["pr","Präsentation","praesentationen/045_BMA_Praesentation3_26.html"],["ib","IB 3 Melder","material/040_BMA_Infoblatt3_26.html"],["","Stationskarten","material/042_BMA_Stationskarten_26.html"],["ab","AB 3","material/041_BMA_Arbeitsblatt3_26.html"],["","Hilfekarte H4","material/090_BMA_Hilfekarten_26.html"],["ts","Test 3","tests/046_BMA_Test3_26.html"]],
   z:[["IA2","Wirkprinzipien der Melder erklären",0],["IA3","Melder je Raum wählen und begründen",0],["IB1","Melder im Labor auslösen",0],["IA3","Sonderfälle (hohe Räume, ASR) lösen",1]]},
  {nr:4,t:"Projektierung",s:"A_M · D_H · Raster",u:"4 UStd. · Tag 2",x:400,y:150,cp:"CP 2",
   q:"„Nimm im Atelier halt 3 Melder, das passt schon.“ – der Meister",
@@ -169,7 +170,7 @@ const LS=[
  {nr:7,t:"Übergabe",s:"Betrieb & Fehlalarme",u:"2 UStd. · Tag 3",x:640,y:500,
   q:"„Was mache ich, wenn das Ding mitten in der Vernissage losgeht?“",
   p:"Übergabe-Fachgespräch (Lernerfolgskontrolle) + Instandhaltungsplan",
-  m:[["pr","Präsentation","praesentationen/085_BMA_Praesentation7_26.html"],["ib","IB 6 Instandhaltung","material/070_BMA_Infoblatt6_26.html"],["ab","AB 7","material/081_BMA_Arbeitsblatt7_26.html"],["","Punktmatrix","material/091_BMA_Punktmatrix_26.html"],["ts","Test 7 · Wiederholung","tests/086_BMA_Test7_26.html"]],
+  m:[["pr","Präsentation","praesentationen/085_BMA_Praesentation7_26.html"],["ib","IB 7 Instandhaltung","material/080_BMA_Infoblatt7_26.html"],["ab","AB 7","material/081_BMA_Arbeitsblatt7_26.html"],["","Punktmatrix","material/091_BMA_Punktmatrix_26.html"],["ts","Test 7 · Wiederholung","tests/086_BMA_Test7_26.html"]],
   z:[["IA1","Inspektion und Wartung: Fristen und Inhalte",0],["IA2","Fehlalarm: Ursachen und Gegenmaßnahmen",0],["IIB2","Anlage adressatengerecht übergeben",0],["IIC3","Stellung beziehen: Rückstellung",0],["IA3","Instandhaltungsplan erstellen",1]]}
 ];
 const KEY="bma-lernlandkarte-v1";let st={};

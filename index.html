@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lernlandkarte Brandmeldeanlagen – GuS LF 9 · BS1 Bayreuth</title>
+<style>
+:root{--rot:#c62828;--rot2:#e53935;--ink:#1b1f24;--grau:#5b6470;--linie:#dfe3e8;--hell:#f6f7f9;--gruen:#2e7d32;--orange:#ef6c00;--blau:#1565c0}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Source Sans 3","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:#eef0f3}
+header{background:var(--ink);color:#fff;padding:18px 28px 16px;display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;justify-content:space-between}
+header .k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#ff8a80;font-weight:700}
+header h1{margin:4px 0 0;font-size:28px;line-height:1.15}
+header p{margin:4px 0 0;color:#c3c9d0;font-size:14px}
+.prog{min-width:260px}
+.prog .bar{height:10px;background:#3a4048;border-radius:99px;overflow:hidden;margin-top:6px}
+.prog .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--rot),#ff7043);transition:width .4s}
+.prog small{color:#c3c9d0;font-size:13px}
+.wrap{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(340px,1fr);gap:22px;padding:22px 28px;max-width:1500px;margin:0 auto}
+@media(max-width:1000px){.wrap{grid-template-columns:1fr;padding:14px}}
+.mapcard,.panel{background:#fff;border-radius:16px;box-shadow:0 2px 14px rgba(0,0,0,.06)}
+.mapcard{padding:18px 18px 10px;position:relative}
+.mapcard h2{margin:0 0 2px;font-size:18px}.mapcard .hint{margin:0 0 6px;font-size:14px;color:var(--grau)}
+svg.map{width:100%;height:auto;display:block}
+.stop{cursor:pointer}
+.stop circle.o{fill:#fff;stroke:var(--ink);stroke-width:5;transition:all .2s}
+.stop:hover circle.o,.stop.sel circle.o{stroke:var(--rot);r:30}
+.stop.done circle.o{fill:var(--rot);stroke:var(--rot)}
+.stop text.n{font-weight:800;font-size:20px;text-anchor:middle;dominant-baseline:central;fill:var(--ink);pointer-events:none}
+.stop.done text.n{fill:#fff}
+.stop text.t,.stop text.s{paint-order:stroke;stroke:#f8f9fb;stroke-width:5px;stroke-linejoin:round}.stop text.t{font-size:15px;font-weight:700;fill:var(--ink)}
+.stop text.s{font-size:12.5px;fill:var(--grau)}
+.cp rect{fill:#fff8e1;stroke:var(--orange);stroke-width:2.5}
+.cp text{font-size:12px;font-weight:700;fill:var(--orange);text-anchor:middle;dominant-baseline:central}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--grau);padding:6px 4px 4px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:14px;height:14px;border-radius:50%;border:3px solid var(--ink);display:inline-block}.dot.f{background:var(--rot);border-color:var(--rot)}
+.panel{padding:22px 24px;align-self:start;position:sticky;top:14px}
+.panel .k{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--rot);font-weight:800}
+.panel h2{margin:4px 0 8px;font-size:24px;line-height:1.2}
+.panel .q{font-style:italic;background:var(--hell);border-left:5px solid var(--rot);padding:10px 12px;border-radius:0 10px 10px 0;margin:10px 0 14px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.chip{font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--hell);border:1px solid var(--linie)}
+.chip.p{background:var(--ink);color:#fff;border-color:var(--ink)}
+h3{font-size:15px;margin:16px 0 6px;text-transform:uppercase;letter-spacing:.06em;color:var(--grau)}
+.mat{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.mat a{display:flex;gap:8px;align-items:center;text-decoration:none;color:var(--ink);background:var(--hell);border:1px solid var(--linie);border-radius:10px;padding:9px 10px;font-size:14px;font-weight:600;transition:all .15s}
+.mat a:hover{border-color:var(--rot);background:#fff5f5}
+.mat a b{font-size:11px;color:#fff;background:var(--grau);border-radius:6px;padding:2px 6px;font-weight:700}
+.mat a.pr b{background:var(--rot)}.mat a.ib b{background:var(--blau)}.mat a.ab b{background:var(--gruen)}
+.ziele{list-style:none;margin:0;padding:0}
+.ziele li{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--linie);font-size:14.5px}
+.ziele li .c{font-size:11px;font-weight:800;color:var(--grau);margin-right:6px}
+.ziele li.e .c{color:var(--orange)}
+.self{display:inline-flex;border:1px solid var(--linie);border-radius:8px;overflow:hidden}
+.self button{border:0;background:#fff;font-size:16px;width:34px;height:30px;cursor:pointer;color:#9aa3ad}
+.self button+button{border-left:1px solid var(--linie)}
+.self button.on{background:#fff3f3}
+.ic{display:inline-block;width:14px;height:14px;border-radius:50%;border:2px solid #9aa3ad;vertical-align:middle}
+.ic.t{background:linear-gradient(90deg,#9aa3ad 50%,transparent 50%)}.ic.s{background:#9aa3ad}
+.on .ic{border-color:var(--rot)}.on .ic.t{background:linear-gradient(90deg,var(--rot) 50%,transparent 50%)}.on .ic.s{background:var(--rot)}
+.prod{background:#e8f5e9;border-radius:10px;padding:10px 12px;font-size:14.5px;margin-top:6px}
+.weg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.weg div{background:var(--hell);border-radius:10px;padding:8px 10px;font-size:13px;border-top:4px solid var(--blau)}
+.weg div:nth-child(2){border-top-color:var(--gruen)}.weg div:nth-child(3){border-top-color:var(--orange)}
+.weg b{display:block;font-size:13.5px}
+.below{max-width:1500px;margin:0 auto;padding:0 28px 30px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:1000px){.below{grid-template-columns:1fr;padding:0 14px 20px}}
+.box{background:#fff;border-radius:16px;padding:18px 20px;box-shadow:0 2px 14px rgba(0,0,0,.06)}
+.box h2{font-size:17px;margin:0 0 10px}
+.box p,.box li{font-size:14.5px}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14px}dt{font-weight:800;color:var(--rot)}dd{margin:0}
+.reset{background:none;border:0;color:var(--grau);text-decoration:underline;cursor:pointer;font-size:13px;padding:0}
+footer{text-align:center;color:var(--grau);font-size:12.5px;padding:0 0 24px}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="k">Gebäude- und Sicherheitstechnik · LF 9 · Jgst. 12</div>
+    <h1>Lernlandkarte: Brandmeldeanlage für das Kunsthaus am Roten Main</h1>
+    <p>Dein Weg vom Kundenauftrag bis zur Übergabe · 7 Stationen · 3 Checkpoints · 18 UStd.</p>
+  </div>
+  <div class="prog"><small id="progtxt">Selbsteinschätzung: 0 von 0 Zielen „sicher“</small><div class="bar"><i id="progbar"></i></div></div>
+</header>
+
+<div class="wrap">
+  <div class="mapcard">
+    <h2>Deine Route</h2>
+    <p class="hint">Klicke auf eine Station. Rot gefüllt = Pflichtziele dort als „sicher“ eingeschätzt.</p>
+    <svg class="map" id="map" viewBox="0 0 900 640" role="img" aria-label="Lernlandkarte mit sieben Stationen"></svg>
+    <div class="legend">
+      <span><i class="dot"></i> Station offen</span>
+      <span><i class="dot f"></i> Pflichtziele sicher</span>
+      <span><svg width="22" height="16"><rect x="1" y="1" width="20" height="14" rx="4" fill="#fff8e1" stroke="#ef6c00" stroke-width="2"/></svg> Checkpoint</span>
+      <span><i class="ic s"></i> sicher <i class="ic t"></i> teilweise <i class="ic"></i> noch nicht</span>
+    </div>
+  </div>
+  <aside class="panel" id="panel" aria-live="polite"></aside>
+</div>
+
+<div class="below">
+  <div class="box">
+    <h2>🧭 Dein Lernweg – du entscheidest</h2>
+    <div class="weg">
+      <div><b>Mit Erklärung</b>Lehrkraft erklärt am Musterbeispiel, dann übst du.</div>
+      <div><b>Angeleitet</b>Infoblatt + Arbeitsblatt + Hilfekarten H1–H6.</div>
+      <div><b>Selbstgesteuert</b>Direkt ans Arbeitsblatt, Infoblatt nur bei Bedarf.</div>
+    </div>
+    <p>Bei jeder Station sind <b>Pflicht</b>-Ziele (für alle) und <b>Erweiterung</b>en (für Profis) ausgewiesen. Erst Hilfekarte → dann Partner → dann Lehrkraft.</p>
+    <p><a href="material/Hilfekarten.html">Hilfekarten öffnen</a> · <a href="material/Punktmatrix.html">Punktmatrix (Druck)</a></p>
+  </div>
+  <div class="box">
+    <h2>📖 Abkürzungen</h2>
+    <dl>
+      <dt>BMA</dt><dd>Brandmeldeanlage</dd><dt>BMZ</dt><dd>Brandmelderzentrale</dd>
+      <dt>ÜE</dt><dd>Übertragungseinrichtung (zur ILS)</dd><dt>ILS</dt><dd>Integrierte Leitstelle</dd>
+      <dt>FBF</dt><dd>Feuerwehr-Bedienfeld</dd><dt>FAT</dt><dd>Feuerwehr-Anzeigetableau</dd>
+      <dt>FSD</dt><dd>Feuerwehr-Schlüsseldepot</dd><dt>FSE</dt><dd>Freischaltelement</dd>
+      <dt>RWM</dt><dd>Rauchwarnmelder (Wohnung)</dd><dt>HFM</dt><dd>Handfeuermelder</dd>
+      <dt>A<sub>M</sub></dt><dd>max. Überwachungsfläche je Melder</dd><dt>D<sub>H</sub></dt><dd>max. waagerechter Abstand Deckenpunkt – Melder</dd>
+    </dl>
+  </div>
+  <div class="box">
+    <h2>📌 Start & Ziel</h2>
+    <p><b>Start:</b> <a href="material/00_Leitsituation.html">Leitsituation – Mail vom Meister lesen</a></p>
+    <p><b>Ziel:</b> Du übergibst die Anlage an Frau Hofmann im Fachgespräch (LS 7) und bestehst die Lernerfolgskontrolle.</p>
+    <p>Deine Einschätzungen speichert nur dieser Browser auf diesem Gerät.<br><button class="reset" id="reset">Alle Einschätzungen zurücksetzen</button></p>
+  </div>
+</div>
+<footer>BS1 Bayreuth · Informationselektroniker/-in · Firma, Personen und Gebäude in der Leitsituation sind frei erfunden.</footer>
+
+<script>
+const LS=[
+ {nr:1,t:"Der Auftrag",s:"Brauchen wir das wirklich?",u:"2 UStd. · Tag 1",x:120,y:520,
+  q:"„Ich hab doch Rauchmelder aus dem Baumarkt – reicht das nicht?“",
+  p:"Anforderungsliste + Rauchwarnmelder-Plan für die Wohnung im OG",
+  m:[["pr","Präsentation","praesentationen/LS1.html"],["ib","IB 1 Normen","material/IB1.html"],["ab","AB 1","material/AB1.html"],["","Leitsituation","material/00_Leitsituation.html"]],
+  z:[["IA1","Schutzziele und Normen nennen",0],["IA2","RWM, BWA und BMA unterscheiden",0],["IA3","RWM-Pflicht (BayBO) auf die Wohnung anwenden",0],["IIC2","zum Nutzen von Rauchmeldern Stellung nehmen",0],["IA3","Zertifizierung nach DIN 14675 einordnen",1]]},
+ {nr:2,t:"Das System",s:"Komponenten & Ablauf",u:"2 UStd. · Tag 1",x:300,y:420,cp:"CP 1",
+  q:"„FSD, FAT, FBF, ÜE – wofür brauche ich das alles?“",
+  p:"Systemskizze mit Ablaufkette für die Kundin",
+  m:[["pr","Präsentation","praesentationen/LS2.html"],["ib","IB 2 Aufbau","material/IB2.html"],["ab","AB 2","material/AB2.html"]],
+  z:[["IA1","Komponenten mit Schaltzeichen benennen",0],["IA2","Ablauf im Alarmfall erklären",0],["IIB2","als Experte/Expertin verständlich erklären",0],["IIC3","Rückstellung nur durch die Feuerwehr begründen",1]]},
+ {nr:3,t:"Melderauswahl",s:"Brand- & Täuschungsgrößen",u:"2 UStd. · Tag 1",x:170,y:270,
+  q:"„In der Werkstatt wird gesägt – geht da nicht ständig der Alarm los?“",
+  p:"Begründete Melderauswahltabelle für alle Räume",
+  m:[["pr","Präsentation","praesentationen/LS3.html"],["ib","IB 3 Melder","material/IB3.html"],["ab","AB 3","material/AB3.html"],["","Hilfekarte H4","material/Hilfekarten.html"]],
+  z:[["IA2","Wirkprinzipien der Melder erklären",0],["IA3","Melder je Raum wählen und begründen",0],["IB1","Melder im Labor auslösen",0],["IA3","Sonderfälle (hohe Räume, ASR) lösen",1]]},
+ {nr:4,t:"Projektierung",s:"A_M · D_H · Raster",u:"4 UStd. · Tag 2",x:400,y:150,cp:"CP 2",
+  q:"„Nimm im Atelier halt 3 Melder, das passt schon.“ – der Meister",
+  p:"Installationsplan EG + Rechenweg + Materialliste",
+  m:[["pr","Präsentation","praesentationen/LS4.html"],["ib","IB 4 Projektierung","material/IB4.html"],["ab","AB 4","material/AB4.html"],["ab","AB 4-Ü Übungen","material/AB4-Ue.html"],["","Hilfekarten H1–H3","material/Hilfekarten.html"]],
+  z:[["IA3","A_M und D_H ermitteln",0],["IA3","Melderanzahl berechnen, Raster prüfen",0],["IB2","Installationsplan normgerecht zeichnen",0],["IIA2","Rechenweg eines Partners prüfen",0],["IA3","Melderzahl wirtschaftlich optimieren",1]]},
+ {nr:5,t:"Verdrahten & Versorgen",s:"Ring · Gruppen · Akku",u:"2 UStd. · Tag 2",x:620,y:120,
+  q:"„Alles in einem Strang? Und welche Akkus bestelle ich?“ – der Monteur",
+  p:"Ring- und Meldergruppenplan + Akkunachweis",
+  m:[["pr","Präsentation","praesentationen/LS5.html"],["ib","IB 5 Ring & Energie","material/IB5.html"],["ab","AB 5","material/AB5.html"],["","Hilfekarten H5/H6","material/Hilfekarten.html"]],
+  z:[["IA2","Ringbus und Trennelemente erklären",0],["IA3","Meldergruppen regelkonform bilden",0],["IA3","Akkukapazität berechnen",0],["IA1","Leitungen und Alarmpegel nennen",0],["IA3","Spannungsfall berechnen",1]]},
+ {nr:6,t:"Labor",s:"Inbetriebnahme & Prüfung",u:"4 UStd. · Tag 3",x:770,y:290,cp:"CP 3",
+  q:"„Bevor wir beim Kunden montieren, testen wir in der Werkstatt.“",
+  p:"Inbetriebnahme- und Prüfprotokoll",
+  m:[["pr","Präsentation","praesentationen/LS6.html"],["ib","IB 6 Ausgänge","material/IB6.html"],["ab","AB 6 Protokoll","material/AB6.html"]],
+  z:[["IB2","Testaufbau nach Plan aufbauen und in Betrieb nehmen",0],["IB2","prüfen und protokollieren",0],["IA3","Ströme an Ausgängen berechnen und messen",0],["IIB2","Rollen im Team einhalten",0],["IB3","eingebauten Fehler systematisch finden",1]]},
+ {nr:7,t:"Übergabe",s:"Betrieb & Fehlalarme",u:"2 UStd. · Tag 3",x:640,y:500,
+  q:"„Was mache ich, wenn das Ding mitten in der Vernissage losgeht?“",
+  p:"Übergabe-Fachgespräch (Lernerfolgskontrolle) + Instandhaltungsplan",
+  m:[["pr","Präsentation","praesentationen/LS7.html"],["ib","IB 6 Instandhaltung","material/IB6.html"],["ab","AB 7","material/AB7.html"],["","Punktmatrix","material/Punktmatrix.html"]],
+  z:[["IA1","Inspektion und Wartung: Fristen und Inhalte",0],["IA2","Fehlalarm: Ursachen und Gegenmaßnahmen",0],["IIB2","Anlage adressatengerecht übergeben",0],["IIC3","Stellung beziehen: Rückstellung",0],["IA3","Instandhaltungsplan erstellen",1]]}
+];
+const KEY="bma-lernlandkarte-v1";let st={};
+try{st=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){st={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+const sub=s=>s.replace(/A_M/g,"A<sub>M</sub>").replace(/D_H/g,"D<sub>H</sub>");
+const svg=document.getElementById("map"),NS="http://www.w3.org/2000/svg";
+function el(n,a,p){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e}
+function draw(){
+ svg.innerHTML="";
+ // Gebäude-Silhouette als Hintergrund
+ el("rect",{x:20,y:20,width:860,height:600,rx:24,fill:"#f8f9fb",stroke:"#e3e6ea"});
+ for(let gx=60;gx<880;gx+=40)el("line",{x1:gx,y1:24,x2:gx,y2:616,stroke:"#eef0f3"});
+ for(let gy=60;gy<620;gy+=40)el("line",{x1:24,y1:gy,x2:876,y2:gy,stroke:"#eef0f3"});
+ // Startpunkt / Ziel
+ const st0={x:60,y:600};
+ const pts=[st0,...LS.map(l=>({x:l.x,y:l.y})),{x:840,y:590}];
+ let d=`M${pts[0].x},${pts[0].y}`;
+ for(let k=1;k<pts.length;k++){const a=pts[k-1],b=pts[k];const mx=(a.x+b.x)/2;d+=` C${mx},${a.y} ${mx},${b.y} ${b.x},${b.y}`}
+ el("path",{d,"pointer-events":"none",fill:"none",stroke:"#d6dae0","stroke-width":18,"stroke-linecap":"round"});
+ el("path",{d,"pointer-events":"none",fill:"none",stroke:"#c62828","stroke-width":5,"stroke-dasharray":"2 12","stroke-linecap":"round"});
+ const s=el("g",{class:"stop"});s.onclick=()=>location.href="material/00_Leitsituation.html";
+ el("rect",{x:28,y:578,width:100,height:34,rx:17,fill:"#1b1f24"},s);
+ const t0=el("text",{x:78,y:600,"text-anchor":"middle","font-size":14,"font-weight":800,fill:"#fff"},s);t0.textContent="START ✉";
+ const g2=el("g",{});el("rect",{x:770,y:572,width:110,height:36,rx:18,fill:"#2e7d32"},g2);
+ const t1=el("text",{x:825,y:595,"text-anchor":"middle","font-size":14,"font-weight":800,fill:"#fff"},g2);t1.textContent="ÜBERGABE 🔑";
+ LS.forEach(l=>{
+  const g=el("g",{class:"stop"+(done(l)?" done":"")+(cur===l.nr?" sel":""),tabindex:0,role:"button","aria-label":"Lernsituation "+l.nr+": "+l.t});
+  g.onclick=()=>select(l.nr);g.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select(l.nr)}};
+  el("circle",{class:"o",cx:l.x,cy:l.y,r:26},g);
+  const n=el("text",{class:"n",x:l.x,y:l.y},g);n.textContent=l.nr;
+  const left=l.x>700;const tx=left?l.x-36:l.x+36,anchor=left?"end":"start";
+  const t=el("text",{class:"t",x:tx,y:l.y-4,"text-anchor":anchor},g);t.textContent=l.t;
+  const ss=el("text",{class:"s",x:tx,y:l.y+14,"text-anchor":anchor},g);ss.textContent=l.s.replace("A_M","AM").replace("D_H","DH")+" · "+l.u.split(" · ")[0];
+  const pr=el("text",{class:"s",x:tx,y:l.y+30,"text-anchor":anchor,"font-weight":700,fill:"#c62828"},g);pr.textContent=prog(l);
+  if(l.cp){const c=el("g",{class:"cp"});const cx=l.x+(left?-10:10),cy=l.y-52;
+   el("rect",{x:cx-24,y:cy-12,width:48,height:24,rx:6},c);const ct=el("text",{x:cx,y:cy},c);ct.textContent=l.cp}
+ });
+}
+function prog(l){const z=l.z.filter(x=>!x[2]);const s=z.filter((x,k)=>val(l.nr,l.z.indexOf(x))==="s").length;return s?`${s}/${z.length} sicher`:""}
+function val(nr,k){return st[nr+"_"+k]||""}
+function done(l){return l.z.every((x,k)=>x[2]||val(l.nr,k)==="s")}
+let cur=1;
+function select(nr){cur=nr;const l=LS[nr-1];
+ const P=document.getElementById("panel");
+ P.innerHTML=`<div class="k">Station ${l.nr} von 7</div><h2>${sub(l.t)}: ${sub(l.s)}</h2>
+ <div class="meta"><span class="chip p">${l.u}</span>${l.cp?`<span class="chip" style="border-color:#ef6c00;color:#ef6c00">${l.cp} am Ende</span>`:""}</div>
+ <div class="q">${l.q}</div>
+ <h3>Material</h3><div class="mat">${l.m.map(m=>`<a class="${m[0]}" href="${m[2]}"><b>${m[0]==="pr"?"▶":m[0]==="ib"?"IB":m[0]==="ab"?"AB":"＋"}</b>${m[1]}</a>`).join("")}</div>
+ <h3>Ich kann … <span style="text-transform:none;letter-spacing:0;font-weight:400">(noch nicht · teilweise · sicher)</span></h3>
+ <ul class="ziele">${l.z.map((z,k)=>`<li class="${z[2]?"e":""}"><span><span class="c">${z[0]}${z[2]?" · ERWEITERUNG":""}</span>${sub(z[1])}</span>
+   <span class="self" data-k="${k}">${["n","t","s"].map(v=>`<button data-v="${v}" class="${val(l.nr,k)===v?"on":""}" title="${v==="n"?"noch nicht":v==="t"?"teilweise":"sicher"}"><i class="ic ${v}"></i></button>`).join("")}</span></li>`).join("")}</ul>
+ <h3>Handlungsprodukt</h3><div class="prod">✅ ${l.p}</div>
+ <p style="margin-top:14px;display:flex;justify-content:space-between">${nr>1?`<button class="reset" onclick="select(${nr-1})">← Station ${nr-1}</button>`:"<span></span>"}${nr<7?`<button class="reset" onclick="select(${nr+1})">Station ${nr+1} →</button>`:""}</p>`;
+ P.querySelectorAll(".self").forEach(g=>g.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const k=g.dataset.k;const key=l.nr+"_"+k;st[key]=st[key]===b.dataset.v?"":b.dataset.v;save();select(nr)}));
+ draw();total();
+}
+function total(){let a=0,s=0;LS.forEach(l=>l.z.forEach((z,k)=>{a++;if(val(l.nr,k)==="s")s++}));
+ document.getElementById("progtxt").textContent=`Selbsteinschätzung: ${s} von ${a} Zielen „sicher“`;document.getElementById("progbar").style.width=(s/a*100)+"%"}
+document.getElementById("reset").onclick=()=>{if(confirm("Alle Selbsteinschätzungen löschen?")){st={};save();select(cur)}};
+select(1);
+</script>
+</body>
+</html>

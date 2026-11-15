@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IB 6 – Ausgänge, Inbetriebnahme, Instandhaltung,
+Fehlalarme – BMA · BS1 Bayreuth</title>
+<link rel="stylesheet" href="../assets/material.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Lernlandkarte</a><span>Brandmeldeanlagen · GuS LF 9</span><button onclick="window.print()">Drucken / PDF</button></div>
+<main class="blatt">
+<div class="kopf"><strong>BS1 BAYREUTH · INFORMATIONSELEKTRONIK</strong><span>LF
+9 · Brandmeldeanlagen · Infoblatt 6 · zu LS 6 und LS 7</span></div>
+<h1>IB 6 – Ausgänge, Inbetriebnahme, Instandhaltung, Fehlalarme</h1>
+<h2 id="ausgänge-einer-gefahrenmeldezentrale">Ausgänge einer
+Gefahrenmeldezentrale</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ausgangsart</th>
+<th>Funktion</th>
+<th>Formeln/Hinweise</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>potentialführend</strong></td>
+<td>Ausgang liefert Spannung (z. B. 12 V/500 mA)</td>
+<td>P<sub>max</sub> = U · I<sub>max</sub>; Last muss darunter liegen,
+sonst Koppelrelais</td>
+</tr>
+<tr class="even">
+<td><strong>überwacht</strong> (für Signalgeber)</td>
+<td>Im Ruhezustand fließt ein kleiner Strom über den
+<strong>Abschlusswiderstand R<sub>A</sub></strong>. Eine Diode sperrt
+die Sirene. Im Alarm wird <strong>umgepolt</strong>, dann leitet die
+Diode.</td>
+<td>I_Ruhe = U / R<sub>A</sub>; Drahtbruch → I = 0 → Störung</td>
+</tr>
+<tr class="odd">
+<td><strong>Open Collector (OC)</strong></td>
+<td>Transistor schaltet nach Masse (0 V)</td>
+<td>Last an Fremdspannung + Vorwiderstand; R = (U − U<sub>F</sub>) /
+I</td>
+</tr>
+<tr class="even">
+<td><strong>potentialfrei</strong> (Relaiskontakt)</td>
+<td>galvanisch getrennt, nur „Schalter“</td>
+<td>Fremdspannung möglich, keine Rückwirkung auf die Zentrale</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Freilaufdiode:</strong> Bei Relaisspulen am OC-Ausgang ist
+sie Pflicht. Sie schließt die Induktionsspannung beim Abschalten kurz
+und schützt den Transistor.</p>
+<h2 id="inbetriebnahme-und-prüfung-ablauf">Inbetriebnahme und Prüfung
+(Ablauf)</h2>
+<ol type="1">
+<li>Sichtprüfung: Stückliste vollständig, Montage einwandfrei,
+Abschlusswiderstände an unbenutzten Eingängen</li>
+<li>Spannung ein, Anlage ohne Störung?</li>
+<li>Jeden Melder auslösen: <strong>Prüfaerosol</strong> (Rauch),
+<strong>Prüfgerät/Fön</strong> (Wärme), Handfeuermelder mit
+Prüfschlüssel</li>
+<li>Sabotage/Entnahme prüfen (Melder vom Sockel)</li>
+<li>Störungen prüfen (Drahtbruch, Kurzschluss)</li>
+<li>Ausgänge, Signalgeber, Weiterleitung prüfen</li>
+<li>Alles <strong>protokollieren</strong></li>
+</ol>
+<h2 id="instandhaltung">Instandhaltung</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Maßnahme</th>
+<th>Häufigkeit</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Inspektion</strong></td>
+<td><strong>4× jährlich</strong> (vierteljährlich)</td>
+<td>Sichtprüfung auf Verschmutzung, Beschädigung, Umbau oder
+Nutzungsänderung</td>
+</tr>
+<tr class="even">
+<td><strong>Wartung</strong></td>
+<td><strong>mindestens 1× jährlich</strong></td>
+<td>alle Melder auslösen, Anzeige am FBF/FAT, Alarmierung und
+Steuerungen, Störungserkennung und -weiterleitung,
+Energieversorgung</td>
+</tr>
+<tr class="odd">
+<td><strong>Akkutausch</strong></td>
+<td>nach Herstellerangabe (meist spätestens nach 4 Jahren)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>Rauchwarnmelder</strong> (Wohnung)</td>
+<td>jährliche Inspektion; Tausch spätestens nach 10 Jahren</td>
+<td>DIN 14676</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Vorher:</strong> Arbeiten bei der ILS bzw. dem Wachdienst
+<strong>anmelden</strong>, externe Steuerungen und Signalgeber
+abschalten. <strong>Nachher:</strong> alles wieder in Betrieb nehmen,
+<strong>abmelden</strong>, Eintrag ins <strong>Betriebsbuch</strong>,
+Unterschrift des Betreibers.</p>
+<h2 id="fehlalarme">Fehlalarme</h2>
+<p><strong>Ursachen:</strong> schlechte Wartung, defekte oder
+verschmutzte Melder, Rauch- oder Staubarbeiten, Kochen beim falschen
+Melder, Arbeiten an der Anlage, böswilliges Auslösen, Sabotage.</p>
+<p><strong>Folgen:</strong> Einsatzkosten (Gebühren für den Betreiber),
+Helfer verlassen ihre Arbeit, „Abstumpfung“ bei häufigen Alarmen.</p>
+<p><strong>Gegenmaßnahmen:</strong> richtige Melderauswahl · regelmäßige
+Wartung · Mehrkriterienmelder ·
+<strong>Zweimeldungsabhängigkeit</strong>: - <em>Typ A:</em> Alarm erst,
+wenn <strong>derselbe</strong> oder ein anderer Melder derselben Gruppe
+den Alarm bestätigt (Alarmzwischenspeicherung). - <em>Typ B:</em> Alarm
+erst, wenn ein <strong>anderer</strong> Melder derselben Gruppe
+(Zweimelderabhängigkeit) oder einer anderen Gruppe
+(Zweigruppenabhängigkeit) ebenfalls auslöst.</p>
+<h2 id="rücksetzen-einer-ausgelösten-bma">Rücksetzen einer ausgelösten
+BMA</h2>
+<p>Technisch kann der Betreiber an der BMZ zurücksetzen. Er sollte es
+aber <strong>nicht</strong> tun. Die <strong>Feuerwehr</strong> setzt
+zurück. Sonst wird die Suche nach der Ursache schwieriger, der Einsatz
+verzögert sich, und <strong>Haftung und Versicherung</strong> gehen zu
+Lasten des Betreibers.</p>
+</main>
+</body>
+</html>

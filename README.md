@@ -6,8 +6,8 @@ Lernsituationen „BMA für das Kunsthaus am Roten Main“ – BS1 Bayreuth.
 
 | Ordner | Inhalt |
 |---|---|
-| `praesentationen/` | LS1–LS7 als HTML-Präsentation (Pfeiltasten, F = Vollbild, Ü = Übersicht) |
-| `material/` | Leitsituation, Infoblätter IB 1–6, Arbeitsblätter AB 1–7, Hilfekarten, Punktmatrix (druckbar über Strg+P) |
+| `praesentationen/` | 025 … 085 Präsentationen zu LS 1–7 (Pfeiltasten, F = Vollbild, Ü = Übersicht) |
+| `material/` | 010 Leitsituation, x0 Infoblätter, x1 Arbeitsblätter, 052 Übung, 090 Hilfekarten, 091 Punktmatrix (druckbar über Strg+P) |
 | `assets/` | Grundrisse, D_H-Diagramm, Systemaufbau, Ringbus (SVG), Stylesheet |
 
 GitHub Pages: Repository → Settings → Pages → Branch `main`, Ordner `/ (root)`.

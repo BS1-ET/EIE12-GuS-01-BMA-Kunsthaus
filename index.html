@@ -28,6 +28,8 @@ svg.map{width:100%;height:auto;display:block}
 .stop.done circle.o{fill:var(--rot);stroke:var(--rot)}
 .stop text.n{font-weight:800;font-size:20px;text-anchor:middle;dominant-baseline:central;fill:var(--ink);pointer-events:none}
 .stop.done text.n{fill:#fff}
+.stop.lock circle.o{fill:#eceff2;stroke:#aab2bb;stroke-dasharray:6 5}.stop.lock text.n{fill:#8a939d;font-size:17px}.stop.lock text.t{fill:#8a939d}
+.sperre{background:#fff8e1;border:1px solid #ffcc80;border-radius:12px;padding:14px 16px;font-size:15px;margin:10px 0}.sperre a{font-weight:700;color:var(--rot)}
 .stop text.t,.stop text.s{paint-order:stroke;stroke:#f8f9fb;stroke-width:5px;stroke-linejoin:round}.stop text.t{font-size:15px;font-weight:700;fill:var(--ink)}
 .stop text.s{font-size:12.5px;fill:var(--grau)}
 .cp rect{fill:#fff8e1;stroke:var(--orange);stroke-width:2.5}
@@ -87,9 +89,10 @@ footer{text-align:center;color:var(--grau);font-size:12.5px;padding:0 0 24px}
 <div class="wrap">
   <div class="mapcard">
     <h2>Deine Route</h2>
-    <p class="hint">Klicke auf eine Station. Rot gefüllt = Pflichtziele dort als „sicher“ eingeschätzt.</p>
+    <p class="hint">Lies zuerst die Leitsituation (START), dann ist Station 1 frei. Jede weitere Station wird frei, sobald du den Test der vorherigen Station bestanden hast (mind. 80 %). Rot gefüllt = Pflichtziele dort als „sicher“ eingeschätzt.</p>
     <svg class="map" id="map" viewBox="0 0 900 640" role="img" aria-label="Lernlandkarte mit sieben Stationen"></svg>
     <div class="legend">
+      <span>🔒 gesperrt</span>
       <span><i class="dot"></i> Station offen</span>
       <span><i class="dot f"></i> Pflichtziele sicher</span>
       <span><svg width="22" height="16"><rect x="1" y="1" width="20" height="14" rx="4" fill="#fff8e1" stroke="#ef6c00" stroke-width="2"/></svg> Checkpoint</span>
@@ -187,16 +190,17 @@ function draw(){
  for(let k=1;k<pts.length;k++){const a=pts[k-1],b=pts[k];const mx=(a.x+b.x)/2;d+=` C${mx},${a.y} ${mx},${b.y} ${b.x},${b.y}`}
  el("path",{d,"pointer-events":"none",fill:"none",stroke:"#d6dae0","stroke-width":18,"stroke-linecap":"round"});
  el("path",{d,"pointer-events":"none",fill:"none",stroke:"#c62828","stroke-width":5,"stroke-dasharray":"2 12","stroke-linecap":"round"});
- const s=el("g",{class:"stop"});s.onclick=()=>location.href="material/010_BMA_Leitsituation_26.html";
+ const s=el("g",{class:"stop"});s.onclick=()=>{merkeLeit();location.href="material/010_BMA_Leitsituation_26.html"};
  el("rect",{x:28,y:578,width:100,height:34,rx:17,fill:"#1b1f24"},s);
  const t0=el("text",{x:78,y:600,"text-anchor":"middle","font-size":14,"font-weight":800,fill:"#fff"},s);t0.textContent="START ✉";
  const g2=el("g",{});el("rect",{x:770,y:572,width:110,height:36,rx:18,fill:"#2e7d32"},g2);
  const t1=el("text",{x:825,y:595,"text-anchor":"middle","font-size":14,"font-weight":800,fill:"#fff"},g2);t1.textContent="ÜBERGABE 🔑";
  LS.forEach(l=>{
-  const g=el("g",{class:"stop"+(done(l)?" done":"")+(cur===l.nr?" sel":""),tabindex:0,role:"button","aria-label":"Lernsituation "+l.nr+": "+l.t});
+  const offen=frei(l.nr);
+  const g=el("g",{class:"stop"+(!offen?" lock":done(l)?" done":"")+(cur===l.nr?" sel":""),tabindex:0,role:"button","aria-label":"Lernsituation "+l.nr+": "+l.t});
   g.onclick=()=>select(l.nr);g.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select(l.nr)}};
   el("circle",{class:"o",cx:l.x,cy:l.y,r:26},g);
-  const n=el("text",{class:"n",x:l.x,y:l.y},g);n.textContent=l.nr;
+  const n=el("text",{class:"n",x:l.x,y:l.y},g);n.textContent=offen?l.nr:"🔒";
   const left=l.x>700;const tx=left?l.x-36:l.x+36,anchor=left?"end":"start";
   const t=el("text",{class:"t",x:tx,y:l.y-4,"text-anchor":anchor},g);t.textContent=l.t;
   const ss=el("text",{class:"s",x:tx,y:l.y+14,"text-anchor":anchor},g);ss.textContent=l.s.replace("A_M","AM").replace("D_H","DH")+" · "+l.u.split(" · ")[0];
@@ -210,9 +214,28 @@ function testErg(href){const id=href.split("/").pop().replace(".html","");let r=
 function prog(l){const z=l.z.filter(x=>!x[2]);const s=z.filter((x,k)=>val(l.nr,l.z.indexOf(x))==="s").length;return s?`${s}/${z.length} sicher`:""}
 function val(nr,k){return st[nr+"_"+k]||""}
 function done(l){return l.z.every((x,k)=>x[2]||val(l.nr,k)==="s")}
+const LEHRER=/[?&]lehrer=1/.test(location.search);
+function leitGelesen(){try{return localStorage.getItem("bma-leit-gelesen")==="1"}catch(e){return false}}
+function merkeLeit(){try{localStorage.setItem("bma-leit-gelesen","1")}catch(e){}}
+function testHref(l){const t=l.m.find(m=>m[0]==="ts");return t?t[2]:null}
+function bestanden(l){const h=testHref(l);if(!h)return true;const id=h.split("/").pop().replace(".html","");
+ try{const r=JSON.parse(localStorage.getItem("bma-test-"+id)||"null");return !!r&&r.best>=80}catch(e){return false}}
+function frei(nr){if(LEHRER)return true;if(nr===1)return leitGelesen();return frei(nr-1)&&bestanden(LS[nr-2])}
+document.addEventListener("click",e=>{const a=e.target.closest("a");if(a&&/Leitsituation/.test(a.getAttribute("href")||""))merkeLeit()});
 let cur=1;
 function select(nr){cur=nr;const l=LS[nr-1];
  const P=document.getElementById("panel");
+ if(!frei(nr)){
+  const v=nr>1?LS[nr-2]:null;
+  const grund=nr===1
+   ?`Lies zuerst die <a href="material/010_BMA_Leitsituation_26.html">Leitsituation – Mail vom Meister</a>. Danach ist Station 1 frei.`
+   :!frei(nr-1)?`Arbeite zuerst die vorherigen Stationen der Reihe nach ab.`
+   :`Bestehe zuerst den <a href="${testHref(v)}">Test zu Station ${v.nr} (${sub(v.t)})</a> mit mindestens 80 %. ${testErg(testHref(v))}`;
+  P.innerHTML=`<div class="k">Station ${l.nr} von 7</div><h2>🔒 ${sub(l.t)}: ${sub(l.s)}</h2>
+  <div class="meta"><span class="chip p">${l.u}</span></div><div class="q">${l.q}</div>
+  <div class="sperre"><b>Diese Station ist noch gesperrt.</b><br>${grund}</div>
+  <p style="margin-top:14px;display:flex;justify-content:space-between">${nr>1?`<button class="reset" onclick="select(${nr-1})">← Station ${nr-1}</button>`:"<span></span>"}${nr<7?`<button class="reset" onclick="select(${nr+1})">Station ${nr+1} →</button>`:""}</p>`;
+  draw();total();return}
  P.innerHTML=`<div class="k">Station ${l.nr} von 7</div><h2>${sub(l.t)}: ${sub(l.s)}</h2>
  <div class="meta"><span class="chip p">${l.u}</span>${l.cp?`<span class="chip" style="border-color:#ef6c00;color:#ef6c00">${l.cp} am Ende</span>`:""}</div>
  <div class="q">${l.q}</div>
@@ -228,7 +251,8 @@ function select(nr){cur=nr;const l=LS[nr-1];
 function total(){let a=0,s=0;LS.forEach(l=>l.z.forEach((z,k)=>{a++;if(val(l.nr,k)==="s")s++}));
  document.getElementById("progtxt").textContent=`Selbsteinschätzung: ${s} von ${a} Zielen „sicher“`;document.getElementById("progbar").style.width=(s/a*100)+"%"}
 document.getElementById("reset").onclick=()=>{if(confirm("Alle Selbsteinschätzungen löschen?")){st={};save();select(cur)}};
-select(1);
+{let n=1;while(n<7&&frei(n+1))n++;select(n)}
+window.addEventListener("pageshow",e=>{if(e.persisted)select(cur)});
 </script>
 </body>
 </html>

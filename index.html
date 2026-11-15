@@ -89,6 +89,7 @@ footer{text-align:center;color:var(--grau);font-size:12.5px;padding:0 0 24px}
 <div class="wrap">
   <div class="mapcard">
     <h2>Deine Route</h2>
+    <p class="hint" id="lehrerhinweis" style="display:none;color:#c62828;font-weight:700">Lehrermodus aktiv – alle Stationen offen. <a href="?lehrer=0">Lehrermodus beenden</a></p>
     <p class="hint">Lies zuerst die Leitsituation (START), dann ist Station 1 frei. Jede weitere Station wird frei, sobald du den Test der vorherigen Station bestanden hast (mind. 80 %). Rot gefüllt = Pflichtziele dort als „sicher“ eingeschätzt.</p>
     <svg class="map" id="map" viewBox="0 0 900 640" role="img" aria-label="Lernlandkarte mit sieben Stationen"></svg>
     <div class="legend">
@@ -214,7 +215,8 @@ function testErg(href){const id=href.split("/").pop().replace(".html","");let r=
 function prog(l){const z=l.z.filter(x=>!x[2]);const s=z.filter((x,k)=>val(l.nr,l.z.indexOf(x))==="s").length;return s?`${s}/${z.length} sicher`:""}
 function val(nr,k){return st[nr+"_"+k]||""}
 function done(l){return l.z.every((x,k)=>x[2]||val(l.nr,k)==="s")}
-const LEHRER=(()=>{try{if(/[?&]lehrer=1/.test(location.search))sessionStorage.setItem("bma-lehrer","1");if(/[?&]lehrer=0/.test(location.search))sessionStorage.removeItem("bma-lehrer");return sessionStorage.getItem("bma-lehrer")==="1"}catch(e){return /[?&]lehrer=1/.test(location.search)}})();
+// Lehrermodus: ?lehrer=1 schaltet ein, ?lehrer=0 aus; bleibt in diesem Browser gespeichert
+const LEHRER=(()=>{try{if(/[?&]lehrer=1/.test(location.search))localStorage.setItem("bma-lehrer","1");if(/[?&]lehrer=0/.test(location.search))localStorage.removeItem("bma-lehrer");return localStorage.getItem("bma-lehrer")==="1"}catch(e){return /[?&]lehrer=1/.test(location.search)}})();
 function leitGelesen(){try{return localStorage.getItem("bma-leit-gelesen")==="1"}catch(e){return false}}
 function merkeLeit(){try{localStorage.setItem("bma-leit-gelesen","1")}catch(e){}}
 function testHref(l){const t=l.m.find(m=>m[0]==="ts");return t?t[2]:null}
@@ -251,6 +253,7 @@ function select(nr){cur=nr;try{localStorage.setItem("bma-station",String(nr))}ca
 function total(){let a=0,s=0;LS.forEach(l=>l.z.forEach((z,k)=>{a++;if(val(l.nr,k)==="s")s++}));
  document.getElementById("progtxt").textContent=`Selbsteinschätzung: ${s} von ${a} Zielen „sicher“`;document.getElementById("progbar").style.width=(s/a*100)+"%"}
 document.getElementById("reset").onclick=()=>{if(confirm("Alle Selbsteinschätzungen löschen?")){st={};save();select(cur)}};
+if(LEHRER)document.getElementById("lehrerhinweis").style.display="block";
 {let n=1;while(n<7&&frei(n+1))n++;            // hoechste freie Station
  let m=parseInt((location.hash.match(/station-?(\d)/)||[])[1]||"",10);  // z. B. index.html#station3
  if(!m){try{m=parseInt(localStorage.getItem("bma-station")||"",10)}catch(e){}}  // zuletzt gewaehlte Station

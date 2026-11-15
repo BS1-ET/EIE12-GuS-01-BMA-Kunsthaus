@@ -47,7 +47,7 @@ h3{font-size:15px;margin:16px 0 6px;text-transform:uppercase;letter-spacing:.06e
 .mat a{display:flex;gap:8px;align-items:center;text-decoration:none;color:var(--ink);background:var(--hell);border:1px solid var(--linie);border-radius:10px;padding:9px 10px;font-size:14px;font-weight:600;transition:all .15s}
 .mat a:hover{border-color:var(--rot);background:#fff5f5}
 .mat a b{font-size:11px;color:#fff;background:var(--grau);border-radius:6px;padding:2px 6px;font-weight:700}
-.mat a.pr b{background:var(--rot)}.mat a.ib b{background:var(--blau)}.mat a.ab b{background:var(--gruen)}
+.mat a.pr b{background:var(--rot)}.mat a.ts b{background:#ef6c00}.mat a .erg{display:block;font-size:11px;font-weight:700;color:#2e7d32}.mat a .erg.offen{color:#ef6c00}.mat a.ib b{background:var(--blau)}.mat a.ab b{background:var(--gruen)}
 .ziele{list-style:none;margin:0;padding:0}
 .ziele li{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--linie);font-size:14.5px}
 .ziele li .c{font-size:11px;font-weight:800;color:var(--grau);margin-right:6px}
@@ -123,9 +123,9 @@ footer{text-align:center;color:var(--grau);font-size:12.5px;padding:0 0 24px}
   </div>
   <div class="box">
     <h2>📌 Start & Ziel</h2>
-    <p><b>Start:</b> <a href="material/010_BMA_Leitsituation_26.html">Leitsituation – Mail vom Meister lesen</a></p>
+    <p><b>Start:</b> <a href="tests/012_BMA_Eingangscheck_26.html">Eingangscheck (5 min)</a> – er empfiehlt dir deinen Lernweg. Danach <a href="material/010_BMA_Leitsituation_26.html">Leitsituation – Mail vom Meister lesen</a>.</p>
     <p><b>Ziel:</b> Du übergibst die Anlage an Frau Hofmann im Fachgespräch (LS 7) und bestehst die Lernerfolgskontrolle.</p>
-    <p>Deine Einschätzungen speichert nur dieser Browser auf diesem Gerät.<br><button class="reset" id="reset">Alle Einschätzungen zurücksetzen</button></p>
+    <p>Deine Einschätzungen und Testergebnisse speichert nur dieser Browser auf diesem Gerät.<br><button class="reset" id="reset">Alle Einschätzungen zurücksetzen</button></p>
   </div>
 </div>
 <footer>BS1 Bayreuth · Informationselektroniker/-in · Firma, Personen und Gebäude in der Leitsituation sind frei erfunden.</footer>
@@ -135,37 +135,37 @@ const LS=[
  {nr:1,t:"Der Auftrag",s:"Brauchen wir das wirklich?",u:"2 UStd. · Tag 1",x:120,y:520,
   q:"„Ich hab doch Rauchmelder aus dem Baumarkt – reicht das nicht?“",
   p:"Anforderungsliste + Rauchwarnmelder-Plan für die Wohnung im OG",
-  m:[["pr","Präsentation","praesentationen/025_BMA_Praesentation1_26.html"],["ib","IB 1 Normen","material/020_BMA_Infoblatt1_26.html"],["ab","AB 1","material/021_BMA_Arbeitsblatt1_26.html"],["","Leitsituation","material/010_BMA_Leitsituation_26.html"]],
+  m:[["pr","Präsentation","praesentationen/025_BMA_Praesentation1_26.html"],["ib","IB 1 Normen","material/020_BMA_Infoblatt1_26.html"],["ab","AB 1","material/021_BMA_Arbeitsblatt1_26.html"],["","Leitsituation","material/010_BMA_Leitsituation_26.html"],["ts","Test 1","tests/026_BMA_Test1_26.html"]],
   z:[["IA1","Schutzziele und Normen nennen",0],["IA2","RWM, BWA und BMA unterscheiden",0],["IA3","RWM-Pflicht (BayBO) auf die Wohnung anwenden",0],["IIC2","zum Nutzen von Rauchmeldern Stellung nehmen",0],["IA3","Zertifizierung nach DIN 14675 einordnen",1]]},
  {nr:2,t:"Das System",s:"Komponenten & Ablauf",u:"2 UStd. · Tag 1",x:300,y:420,cp:"CP 1",
   q:"„FSD, FAT, FBF, ÜE – wofür brauche ich das alles?“",
   p:"Systemskizze mit Ablaufkette für die Kundin",
-  m:[["pr","Präsentation","praesentationen/035_BMA_Praesentation2_26.html"],["ib","IB 2 Aufbau","material/030_BMA_Infoblatt2_26.html"],["ab","AB 2","material/031_BMA_Arbeitsblatt2_26.html"]],
+  m:[["pr","Präsentation","praesentationen/035_BMA_Praesentation2_26.html"],["ib","IB 2 Aufbau","material/030_BMA_Infoblatt2_26.html"],["ab","AB 2","material/031_BMA_Arbeitsblatt2_26.html"],["ts","Test 2 · CP 1","tests/036_BMA_Test2_26.html"]],
   z:[["IA1","Komponenten mit Schaltzeichen benennen",0],["IA2","Ablauf im Alarmfall erklären",0],["IIB2","als Experte/Expertin verständlich erklären",0],["IIC3","Rückstellung nur durch die Feuerwehr begründen",1]]},
  {nr:3,t:"Melderauswahl",s:"Brand- & Täuschungsgrößen",u:"2 UStd. · Tag 1",x:170,y:270,
   q:"„In der Werkstatt wird gesägt – geht da nicht ständig der Alarm los?“",
   p:"Begründete Melderauswahltabelle für alle Räume",
-  m:[["pr","Präsentation","praesentationen/045_BMA_Praesentation3_26.html"],["ib","IB 3 Melder","material/040_BMA_Infoblatt3_26.html"],["ab","AB 3","material/041_BMA_Arbeitsblatt3_26.html"],["","Hilfekarte H4","material/090_BMA_Hilfekarten_26.html"]],
+  m:[["pr","Präsentation","praesentationen/045_BMA_Praesentation3_26.html"],["ib","IB 3 Melder","material/040_BMA_Infoblatt3_26.html"],["ab","AB 3","material/041_BMA_Arbeitsblatt3_26.html"],["","Hilfekarte H4","material/090_BMA_Hilfekarten_26.html"],["ts","Test 3","tests/046_BMA_Test3_26.html"]],
   z:[["IA2","Wirkprinzipien der Melder erklären",0],["IA3","Melder je Raum wählen und begründen",0],["IB1","Melder im Labor auslösen",0],["IA3","Sonderfälle (hohe Räume, ASR) lösen",1]]},
  {nr:4,t:"Projektierung",s:"A_M · D_H · Raster",u:"4 UStd. · Tag 2",x:400,y:150,cp:"CP 2",
   q:"„Nimm im Atelier halt 3 Melder, das passt schon.“ – der Meister",
   p:"Installationsplan EG + Rechenweg + Materialliste",
-  m:[["pr","Präsentation","praesentationen/055_BMA_Praesentation4_26.html"],["ib","IB 4 Projektierung","material/050_BMA_Infoblatt4_26.html"],["ab","AB 4","material/051_BMA_Arbeitsblatt4_26.html"],["ab","AB 4-Ü Übungen","material/052_BMA_Uebung4_26.html"],["","Hilfekarten H1–H3","material/090_BMA_Hilfekarten_26.html"]],
+  m:[["pr","Präsentation","praesentationen/055_BMA_Praesentation4_26.html"],["ib","IB 4 Projektierung","material/050_BMA_Infoblatt4_26.html"],["ab","AB 4","material/051_BMA_Arbeitsblatt4_26.html"],["ab","AB 4-Ü Übungen","material/052_BMA_Uebung4_26.html"],["","Hilfekarten H1–H3","material/090_BMA_Hilfekarten_26.html"],["ts","Test 4 · CP 2","tests/056_BMA_Test4_26.html"]],
   z:[["IA3","A_M und D_H ermitteln",0],["IA3","Melderanzahl berechnen, Raster prüfen",0],["IB2","Installationsplan normgerecht zeichnen",0],["IIA2","Rechenweg eines Partners prüfen",0],["IA3","Melderzahl wirtschaftlich optimieren",1]]},
  {nr:5,t:"Verdrahten & Versorgen",s:"Ring · Gruppen · Akku",u:"2 UStd. · Tag 2",x:620,y:120,
   q:"„Alles in einem Strang? Und welche Akkus bestelle ich?“ – der Monteur",
   p:"Ring- und Meldergruppenplan + Akkunachweis",
-  m:[["pr","Präsentation","praesentationen/065_BMA_Praesentation5_26.html"],["ib","IB 5 Ring & Energie","material/060_BMA_Infoblatt5_26.html"],["ab","AB 5","material/061_BMA_Arbeitsblatt5_26.html"],["","Hilfekarten H5/H6","material/090_BMA_Hilfekarten_26.html"]],
+  m:[["pr","Präsentation","praesentationen/065_BMA_Praesentation5_26.html"],["ib","IB 5 Ring & Energie","material/060_BMA_Infoblatt5_26.html"],["ab","AB 5","material/061_BMA_Arbeitsblatt5_26.html"],["","Hilfekarten H5/H6","material/090_BMA_Hilfekarten_26.html"],["ts","Test 5","tests/066_BMA_Test5_26.html"]],
   z:[["IA2","Ringbus und Trennelemente erklären",0],["IA3","Meldergruppen regelkonform bilden",0],["IA3","Akkukapazität berechnen",0],["IA1","Leitungen und Alarmpegel nennen",0],["IA3","Spannungsfall berechnen",1]]},
  {nr:6,t:"Labor",s:"Inbetriebnahme & Prüfung",u:"4 UStd. · Tag 3",x:770,y:290,cp:"CP 3",
   q:"„Bevor wir beim Kunden montieren, testen wir in der Werkstatt.“",
   p:"Inbetriebnahme- und Prüfprotokoll",
-  m:[["pr","Präsentation","praesentationen/075_BMA_Praesentation6_26.html"],["ib","IB 6 Ausgänge","material/070_BMA_Infoblatt6_26.html"],["ab","AB 6 Protokoll","material/071_BMA_Arbeitsblatt6_26.html"]],
+  m:[["pr","Präsentation","praesentationen/075_BMA_Praesentation6_26.html"],["ib","IB 6 Ausgänge","material/070_BMA_Infoblatt6_26.html"],["ab","AB 6 Protokoll","material/071_BMA_Arbeitsblatt6_26.html"],["ts","Test 6 · CP 3","tests/076_BMA_Test6_26.html"]],
   z:[["IB2","Testaufbau nach Plan aufbauen und in Betrieb nehmen",0],["IB2","prüfen und protokollieren",0],["IA3","Ströme an Ausgängen berechnen und messen",0],["IIB2","Rollen im Team einhalten",0],["IB3","eingebauten Fehler systematisch finden",1]]},
  {nr:7,t:"Übergabe",s:"Betrieb & Fehlalarme",u:"2 UStd. · Tag 3",x:640,y:500,
   q:"„Was mache ich, wenn das Ding mitten in der Vernissage losgeht?“",
   p:"Übergabe-Fachgespräch (Lernerfolgskontrolle) + Instandhaltungsplan",
-  m:[["pr","Präsentation","praesentationen/085_BMA_Praesentation7_26.html"],["ib","IB 6 Instandhaltung","material/070_BMA_Infoblatt6_26.html"],["ab","AB 7","material/081_BMA_Arbeitsblatt7_26.html"],["","Punktmatrix","material/091_BMA_Punktmatrix_26.html"]],
+  m:[["pr","Präsentation","praesentationen/085_BMA_Praesentation7_26.html"],["ib","IB 6 Instandhaltung","material/070_BMA_Infoblatt6_26.html"],["ab","AB 7","material/081_BMA_Arbeitsblatt7_26.html"],["","Punktmatrix","material/091_BMA_Punktmatrix_26.html"],["ts","Test 7 · Wiederholung","tests/086_BMA_Test7_26.html"]],
   z:[["IA1","Inspektion und Wartung: Fristen und Inhalte",0],["IA2","Fehlalarm: Ursachen und Gegenmaßnahmen",0],["IIB2","Anlage adressatengerecht übergeben",0],["IIC3","Stellung beziehen: Rückstellung",0],["IA3","Instandhaltungsplan erstellen",1]]}
 ];
 const KEY="bma-lernlandkarte-v1";let st={};
@@ -205,6 +205,8 @@ function draw(){
    el("rect",{x:cx-24,y:cy-12,width:48,height:24,rx:6},c);const ct=el("text",{x:cx,y:cy},c);ct.textContent=l.cp}
  });
 }
+function testErg(href){const id=href.split("/").pop().replace(".html","");let r=null;try{r=JSON.parse(localStorage.getItem("bma-test-"+id)||"null")}catch(e){}
+ if(!r)return '<span class="erg offen">noch nicht bearbeitet</span>';return `<span class="erg${r.best>=80?"":" offen"}">bestes Ergebnis ${r.best} %${r.best>=80?" ✔":""}</span>`}
 function prog(l){const z=l.z.filter(x=>!x[2]);const s=z.filter((x,k)=>val(l.nr,l.z.indexOf(x))==="s").length;return s?`${s}/${z.length} sicher`:""}
 function val(nr,k){return st[nr+"_"+k]||""}
 function done(l){return l.z.every((x,k)=>x[2]||val(l.nr,k)==="s")}
@@ -214,7 +216,7 @@ function select(nr){cur=nr;const l=LS[nr-1];
  P.innerHTML=`<div class="k">Station ${l.nr} von 7</div><h2>${sub(l.t)}: ${sub(l.s)}</h2>
  <div class="meta"><span class="chip p">${l.u}</span>${l.cp?`<span class="chip" style="border-color:#ef6c00;color:#ef6c00">${l.cp} am Ende</span>`:""}</div>
  <div class="q">${l.q}</div>
- <h3>Material</h3><div class="mat">${l.m.map(m=>`<a class="${m[0]}" href="${m[2]}"><b>${m[0]==="pr"?"▶":m[0]==="ib"?"IB":m[0]==="ab"?"AB":"＋"}</b>${m[1]}</a>`).join("")}</div>
+ <h3>Material</h3><div class="mat">${l.m.map(m=>`<a class="${m[0]}" href="${m[2]}"><b>${m[0]==="pr"?"▶":m[0]==="ib"?"IB":m[0]==="ab"?"AB":m[0]==="ts"?"✓":"＋"}</b><span>${m[1]}${m[0]==="ts"?testErg(m[2]):""}</span></a>`).join("")}</div>
  <h3>Ich kann … <span style="text-transform:none;letter-spacing:0;font-weight:400">(noch nicht · teilweise · sicher)</span></h3>
  <ul class="ziele">${l.z.map((z,k)=>`<li class="${z[2]?"e":""}"><span><span class="c">${z[0]}${z[2]?" · ERWEITERUNG":""}</span>${sub(z[1])}</span>
    <span class="self" data-k="${k}">${["n","t","s"].map(v=>`<button data-v="${v}" class="${val(l.nr,k)===v?"on":""}" title="${v==="n"?"noch nicht":v==="t"?"teilweise":"sicher"}"><i class="ic ${v}"></i></button>`).join("")}</span></li>`).join("")}</ul>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test LS 4 (Checkpoint 2): Melderberechnung – BMA · BS1 Bayreuth</title>
+<link rel="stylesheet" href="../assets/material.css"><link rel="stylesheet" href="../assets/test.css"></head>
+<body>
+<div class="topbar"><a href="../index.html">← Lernlandkarte</a><span>Brandmeldeanlagen · GuS LF 9 · Online-Test</span><button onclick="window.print()">Drucken / PDF</button></div>
+<main class="blatt">
+<div class="kopf"><strong>BS1 BAYREUTH · INFORMATIONSELEKTRONIK</strong><span>Test 4 · CP 2</span></div>
+<h1>Test LS 4 (Checkpoint 2): Melderberechnung</h1>
+<p class="intro">Du brauchst IB 4 (Tabelle und D<sub>H</sub>-Diagramm) und einen Taschenrechner. Dezimalzahlen mit Komma oder Punkt eingeben.</p>
+<div class="namezeile"><label>Dein Name (für den Ergebnisnachweis): <input id="name" autocomplete="name"></label></div>
+<div id="test"></div>
+<div id="ergebnis" hidden></div>
+<footer class="fuss"><span>LF 9 · Brandmeldeanlagen · Test 4 · Checkpoint 2 · zu LS 4</span><span>056_BMA_Test4_26</span></footer>
+</main>
+<script>window.TEST={"id": "056_BMA_Test4_26", "ls": 4, "kurz": "Test 4 · CP 2", "weg": false, "fragen": [{"t": "num", "k": "IA3", "q": "Ein Ausstellungsraum ist 15 m lang und 9 m breit (h = 3,8 m, Flachdach). Wie groß ist die Fläche A?", "u": "m²", "a": 135, "tol": 0.1, "e": "A = 15 m · 9 m = 135 m²"}, {"t": "sc", "k": "IA3", "q": "Wie groß ist die maximale Überwachungsfläche A<sub>M</sub> für Rauchmelder in diesem Raum?", "o": ["60 m²", "80 m²", "90 m²", "110 m²"], "a": 0, "e": "A > 80 m², h ≤ 6 m, α ≤ 20° → A<sub>M</sub> = 60 m²"}, {"t": "num", "k": "IA3", "q": "Lies D<sub>H</sub> aus dem Diagramm ab (A<sub>M</sub> = 60 m², α ≤ 20°).", "u": "m", "a": 5.7, "tol": 0.05, "e": "Blaue Kurve bei 60 m²: D<sub>H</sub> = 5,7 m"}, {"t": "num", "k": "IA3", "q": "Wie viele Melder sind mindestens nötig (n<sub>min</sub> = A / A<sub>M</sub>, aufgerundet)?", "u": "Stück", "a": 3, "tol": 0, "e": "135 / 60 = 2,25 → aufrunden auf 3 Melder"}, {"t": "num", "k": "IA3", "q": "Du wählst das Raster 3 × 1 (Feld 5 m × 9 m). Berechne die halbe Felddiagonale r.", "u": "m", "a": 5.15, "tol": 0.05, "e": "r = √(2,5² + 4,5²) m = √26,5 m = 5,15 m ≤ 5,7 m ✓"}, {"t": "sc", "k": "IA3", "q": "Ein Lager (7 m × 5 m, h = 3 m, Flachdach) wird mit Wärmemeldern überwacht. Wie groß ist A<sub>M</sub>?", "o": ["20 m²", "30 m²", "40 m²", "60 m²"], "a": 0, "e": "A = 35 m² > 30 m², Wärmemelder, α ≤ 20° → A<sub>M</sub> = 20 m²"}, {"t": "sc", "k": "IA2", "q": "Welche Bedingungen muss ein Melderraster nach DIN VDE 0833-2 erfüllen?", "o": ["A<sub>M</sub> und D<sub>H</sub> müssen beide eingehalten sein.", "Es reicht, wenn A<sub>M</sub> eingehalten ist.", "Es reicht, wenn D<sub>H</sub> eingehalten ist.", "Die Melder müssen genau 5 m auseinander hängen."], "a": 0, "e": "Beide Bedingungen gelten gleichzeitig. Die Flächenrechnung allein reicht nicht immer."}, {"t": "num", "k": "IA3", "q": "Halle 30 m × 16 m, h = 9 m, α = 10°, Rauchmelder (A<sub>M</sub> = 80 m², D<sub>H</sub> = 6,6 m). Raster 3 × 2 ist normgerecht. Wie viele Melder?", "u": "Stück", "a": 6, "tol": 0, "e": "n<sub>min</sub> = 480 / 80 = 6. Raster 3 × 2: Feld 10 m × 8 m = 80 m² ✓, r = √(5² + 4²) = 6,40 m ≤ 6,6 m ✓"}, {"t": "num", "k": "IA1", "q": "Welchen Mindestabstand muss ein Melder zur Wand haben?", "u": "m", "a": 0.5, "tol": 0.01, "e": "Mindestens 0,5 m zur Wand."}]};</script>
+<script src="../assets/test.js"></script>
+</body></html>

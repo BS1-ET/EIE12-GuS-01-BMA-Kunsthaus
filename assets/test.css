@@ -1,0 +1,22 @@
+
+.intro{color:var(--grau)}
+.namezeile{margin:.6rem 0 1rem}.namezeile input{font:inherit;padding:.35rem .5rem;border:1px solid var(--linie);border-radius:6px;min-width:16rem}
+.frage{border:1px solid var(--linie);border-radius:10px;padding:.8rem 1rem;margin:.8rem 0;break-inside:avoid;transition:border-color .2s}
+.frage.ok{border-color:#66bb6a;background:#f3faf3}.frage.nok{border-color:#ef9a9a;background:#fff7f7}
+.fkopf{display:flex;gap:.6rem;align-items:center;font-size:.75rem;color:var(--grau)}
+.fkopf .nr{display:inline-flex;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--rot);color:#fff;font-weight:700;align-items:center;justify-content:center;font-size:.85rem}
+.fkopf .koord{font-weight:700}.fkopf .hinweis{background:#fff3e0;color:#e65100;border-radius:99px;padding:.05rem .5rem;font-weight:700}
+.q{font-weight:600;margin:.5rem 0}
+.opts{display:grid;gap:.35rem}
+.opt{display:flex;gap:.6rem;align-items:flex-start;padding:.45rem .6rem;border:1px solid var(--linie);border-radius:8px;cursor:pointer;background:#fff}
+.opt:hover{border-color:var(--rot)}.opt input{margin-top:.25rem}
+.opt.richtig{border-color:#43a047;background:#e8f5e9}.opt.falsch{border-color:#e53935;background:#ffebee}
+.numrow{display:flex;gap:.5rem;align-items:center}.numin{font:inherit;width:9rem;padding:.4rem .5rem;border:1px solid var(--linie);border-radius:6px}
+.unit{font-weight:600;color:var(--grau)}
+.fb{margin-top:.5rem;font-size:.92rem}.fb .erkl{color:#37474f}
+.aktion{text-align:center;margin:1.2rem 0}
+.btn{display:inline-block;background:var(--rot);color:#fff;border:0;border-radius:8px;padding:.6rem 1.4rem;font:600 1rem inherit;cursor:pointer;text-decoration:none}
+.btn:disabled{opacity:.4;cursor:default}.btn.hell{background:var(--ink)}
+.ergebnis{border-radius:12px;padding:1rem 1.2rem;margin:1rem 0}.ergebnis.bestanden{background:#e8f5e9;border:2px solid #43a047}.ergebnis.offen{background:#fff3e0;border:2px solid #fb8c00}
+.ergebnis h2{border:0;padding:0;margin-top:0}.nachweis{font-weight:700}
+@media print{.aktion,.btn,.namezeile input{border:0}.frage{break-inside:avoid}}
